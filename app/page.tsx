@@ -294,10 +294,48 @@ const ticker = [
   "Taze kavrulmuş kahve, her gün",
 ];
 
+/* Her kategoriye tıklandığında butonun üstünde beliren efekt türü */
+type FxType = "steam" | "bubble" | "frost" | "sparkle";
+
+const fxByKey: Record<string, FxType> = {
+  "Sıcak Kahveler": "steam",
+  "Soğuk Kahveler": "frost",
+  "Milkshake & Smoothie": "bubble",
+  Yiyecekler: "sparkle",
+  Tatlılar: "sparkle",
+  Kokteyller: "sparkle",
+  Bira: "bubble",
+  "Likör & Shot": "sparkle",
+  Çaylar: "steam",
+  Meşrubat: "bubble",
+};
+
+function Fx({ type }: { type: FxType }) {
+  const count = type === "steam" ? 5 : 8;
+  return (
+    <span
+      className="pointer-events-none absolute inset-0 overflow-visible"
+      aria-hidden="true"
+    >
+      {Array.from({ length: count }).map((_, i) => (
+        <span
+          key={i}
+          className={`fx fx-${type}`}
+          style={{
+            left: `${10 + (i * 80) / (count - 1)}%`,
+            animationDelay: `${i * 60}ms`,
+          }}
+        />
+      ))}
+    </span>
+  );
+}
+
 /* --------------------------------- Sayfa --------------------------------- */
 
 export default function Home() {
   const [active, setActive] = useState(categories[0].key);
+  const [burst, setBurst] = useState(0);
   const current = categories.find((c) => c.key === active) ?? categories[0];
 
   return (
@@ -427,7 +465,7 @@ export default function Home() {
       <section id="menu" className="relative border-t border-line">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <div className="text-center">
-            <p className="eyebrow">Jimmy’s Corner</p>
+            <p className="eyebrow">JImmy’s Corner</p>
             <h2
               className="font-display font-light mt-4"
               style={{ fontSize: "clamp(2.2rem, 6vw, 3.6rem)" }}
@@ -447,11 +485,15 @@ export default function Home() {
                 key={c.key}
                 role="tab"
                 aria-selected={active === c.key}
-                onClick={() => setActive(c.key)}
-                className={`btn ${
+                onClick={() => {
+                  setActive(c.key);
+                  setBurst((b) => b + 1);
+                }}
+                className={`btn relative overflow-visible ${
                   active === c.key ? "btn-solid" : "btn-ghost"
                 } !px-4 !py-2.5`}
               >
+                {active === c.key && <Fx key={burst} type={fxByKey[c.key]} />}
                 <span aria-hidden="true" className="mr-1.5 opacity-80">
                   {c.icon}
                 </span>
