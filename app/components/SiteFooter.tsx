@@ -11,8 +11,9 @@ export default function SiteFooter() {
   return (
     <footer className="border-t border-line bg-ink relative z-10">
       <div className="mx-auto max-w-6xl px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-        <Link href="/" className="font-display text-lg text-cream">
-          Jimmy<span className="text-brass">’</span>s
+        <Link href="/" className="flex items-center" aria-label="Jimmy's Corner — ana sayfa">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/JLogo.png" alt="Jimmy's Corner" className="logo-mark h-16 w-auto" />
         </Link>
 
         <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">

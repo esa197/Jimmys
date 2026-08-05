@@ -291,7 +291,7 @@ const ticker = [
   "Bu akşam · Canlı caz 21:00",
   "Mutfak gece yarısına kadar açık",
   "Bar 01:00'e kadar",
-  "Rezervasyon önerilir",
+  "Taze kavrulmuş kahve, her gün",
 ];
 
 /* --------------------------------- Sayfa --------------------------------- */
@@ -345,10 +345,15 @@ export default function Home() {
           <p className="eyebrow reveal">Bar &amp; Bistro · Kuruluş MMXXIV</p>
 
           <h1
-            className="font-display font-light leading-[0.9] tracking-tight mt-6 reveal"
-            style={{ fontSize: "clamp(3.5rem, 13vw, 9.5rem)", animationDelay: "0.05s" }}
+            className="mt-8 flex justify-center reveal"
+            style={{ animationDelay: "0.05s" }}
           >
-            Jimmy<span className="text-brass">’</span>s
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/JLogo.png"
+              alt="Jimmy's Corner"
+              className="logo-mark h-auto w-[min(88vw,620px)]"
+            />
           </h1>
 
           <p
@@ -363,10 +368,7 @@ export default function Home() {
             className="mt-10 flex flex-wrap items-center justify-center gap-4 reveal"
             style={{ animationDelay: "0.25s" }}
           >
-            <a href="#iletisim" className="btn btn-solid">
-              Masa Ayırt
-            </a>
-            <a href="#menu" className="btn btn-ghost">
+            <a href="#menu" className="btn btn-solid">
               Menüyü Gör
             </a>
           </div>
@@ -408,23 +410,15 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Görsel yer tutucu */}
+          {/* Mekân görseli */}
           <div className="relative aspect-[4/5] rounded-sm border border-line overflow-hidden bg-panel">
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(80% 60% at 30% 20%, rgba(200,153,74,0.22), transparent 60%), radial-gradient(70% 70% at 90% 100%, rgba(124,47,47,0.28), transparent 60%)",
-              }}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/ic-mekan.jpeg"
+              alt="Jimmy's Corner iç mekân — ahşap masalar, kırmızı sandalyeler ve sıcak ışık"
+              className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center px-6">
-              <span className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-muted">
-                [ mekân fotoğrafı ]
-              </span>
-              <span className="font-display text-2xl text-cream/70">
-                Buraya bir görsel gelecek
-              </span>
-            </div>
+            <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5" />
           </div>
         </div>
       </section>
@@ -594,27 +588,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- Rezervasyon CTA ---------------- */}
+      {/* ---------------- İletişim ---------------- */}
       <section id="iletisim" className="relative border-t border-line overflow-hidden">
         <div className="glow bg-brass" style={{ width: 420, height: 420, top: -160, left: "50%", transform: "translateX(-50%)", opacity: 0.35 }} />
         <div className="relative mx-auto max-w-3xl px-6 py-24 md:py-32 text-center">
-          <p className="eyebrow">Rezervasyon</p>
+          <p className="eyebrow">İletişim</p>
           <h2
             className="font-display font-light mt-5 leading-[1.02]"
             style={{ fontSize: "clamp(2.2rem, 6vw, 4rem)" }}
           >
-            Sana bir masa ayıralım.
+            Bize bir merhaba de.
           </h2>
           <p className="mt-6 text-muted max-w-md mx-auto leading-relaxed">
-            Dört kişiye kadar masalar için çağrı yeterli. Daha kalabalık
-            gruplar ve özel geceler için bize yazın.
+            Soru, öneri ya da sadece bir kahve sohbeti — kapımız da telefonumuz
+            da açık. En hızlısı Instagram’dan yazmak.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a href="tel:+900000000000" className="btn btn-solid">
-              Ara &amp; Ayır
+              Bizi Ara
             </a>
             <a href="mailto:merhaba@jimmys.example" className="btn btn-ghost">
               E-posta Gönder
+            </a>
+            <a
+              href="https://instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost"
+            >
+              Instagram
             </a>
           </div>
         </div>

@@ -68,6 +68,12 @@ body::before {
   font-family: var(--font-mono), ui-monospace, monospace;
 }
 
+/* Logo siyah-beyaz PNG'yi koyu zeminde temiz beyaza çevirir (arka planı şeffaflaştırır) */
+.logo-mark {
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
+
 .eyebrow {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.72rem;

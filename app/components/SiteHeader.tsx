@@ -19,10 +19,16 @@ export default function SiteHeader() {
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="font-display text-xl tracking-tight text-cream"
+          className="flex items-center"
+          aria-label="Jimmy's Corner — ana sayfa"
           onClick={() => setOpen(false)}
         >
-          Jimmy<span className="text-brass">’</span>s
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/JLogo.png"
+            alt="Jimmy's Corner"
+            className="logo-mark h-11 sm:h-12 w-auto"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -38,12 +44,6 @@ export default function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link
-            href="/#iletisim"
-            className="btn btn-solid !py-2.5 !px-4 hidden sm:inline-flex"
-          >
-            Rezervasyon
-          </Link>
           <button
             type="button"
             className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-md border border-line text-cream"
@@ -77,13 +77,6 @@ export default function SiteHeader() {
                 {n.label}
               </Link>
             ))}
-            <Link
-              href="/#iletisim"
-              onClick={() => setOpen(false)}
-              className="btn btn-solid mt-2 self-start"
-            >
-              Rezervasyon
-            </Link>
           </nav>
         </div>
       )}
