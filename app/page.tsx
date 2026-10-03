@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import CoffeePourScene from "./components/CoffeePourScene";
 
 /* ----------------------------- İçerik (yer tutucu) ----------------------------- */
 
@@ -340,6 +341,9 @@ export default function Home() {
 
   return (
     <div className="relative z-10">
+      {/* ---------------- Açılış: kaydırmalı buz → kahve sahnesi ---------------- */}
+      <CoffeePourScene />
+
       {/* ---------------- Ticker ---------------- */}
       <div className="overflow-hidden border-b border-line bg-charcoal">
         <div className="marquee-track py-2.5">
@@ -416,7 +420,7 @@ export default function Home() {
       {/* ---------------- Hakkında / Ev ---------------- */}
       <section id="mekan" className="relative border-t border-line bg-charcoal">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28 grid md:grid-cols-2 gap-14 items-center">
-          <div>
+          <div data-reveal>
             <p className="eyebrow">Ev</p>
             <h2
               className="font-display font-light mt-4 leading-[1.05]"
@@ -449,7 +453,11 @@ export default function Home() {
           </div>
 
           {/* Mekân görseli */}
-          <div className="relative aspect-[4/5] rounded-sm border border-line overflow-hidden bg-panel">
+          <div
+            data-reveal
+            style={{ transitionDelay: "0.12s" }}
+            className="relative aspect-[4/5] rounded-sm border border-line overflow-hidden bg-panel"
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/ic-mekan.jpeg"
@@ -464,7 +472,7 @@ export default function Home() {
       {/* ---------------- Menü (imza bölüm) ---------------- */}
       <section id="menu" className="relative border-t border-line">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <div className="text-center">
+          <div data-reveal className="text-center">
             <p className="eyebrow">JImmy’s Corner</p>
             <h2
               className="font-display font-light mt-4"
@@ -478,6 +486,8 @@ export default function Home() {
           <div
             role="tablist"
             aria-label="Menü kategorileri"
+            data-reveal
+            style={{ transitionDelay: "0.1s" }}
             className="mt-10 flex flex-wrap justify-center gap-2"
           >
             {categories.map((c) => (
@@ -583,7 +593,7 @@ export default function Home() {
       {/* ---------------- Saatler & Konum ---------------- */}
       <section id="saatler" className="relative border-t border-line bg-charcoal">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28 grid md:grid-cols-2 gap-14">
-          <div>
+          <div data-reveal>
             <p className="eyebrow">Saatler</p>
             <h2
               className="font-display font-light mt-4"
@@ -604,7 +614,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div>
+          <div data-reveal style={{ transitionDelay: "0.12s" }}>
             <p className="eyebrow">Konum</p>
             <h2
               className="font-display font-light mt-4"
@@ -633,7 +643,10 @@ export default function Home() {
       {/* ---------------- İletişim ---------------- */}
       <section id="iletisim" className="relative border-t border-line overflow-hidden">
         <div className="glow bg-brass" style={{ width: 420, height: 420, top: -160, left: "50%", transform: "translateX(-50%)", opacity: 0.35 }} />
-        <div className="relative mx-auto max-w-3xl px-6 py-24 md:py-32 text-center">
+        <div
+          data-reveal
+          className="relative mx-auto max-w-3xl px-6 py-24 md:py-32 text-center"
+        >
           <p className="eyebrow">İletişim</p>
           <h2
             className="font-display font-light mt-5 leading-[1.02]"
