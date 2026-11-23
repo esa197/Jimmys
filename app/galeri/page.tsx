@@ -7,26 +7,89 @@ export const metadata: Metadata = {
 };
 
 /*
- * Gerçek fotoğraflar: public/gallery/ klasörüne koyup aşağıdaki karta
- * `img: "/gallery/dosya.jpg"` ekle. Boş kartlarda ikonlu yer tutucu görünür.
+ * Fotoğraflar public/gallery/ (mekân) ve public/menu/ (ürün) klasörlerinde.
+ * Yeni kare eklemek için listeye `img` yolu ile bir satır ekle; `img` yoksa
+ * ikonlu yer tutucu görünür.
  */
 type Tile = {
   label: string;
   icon: string;
   ratio: string; // aspect-ratio class
   img?: string;
+  alt?: string;
 };
 
 const tiles: Tile[] = [
-  { label: "Bar & ışık", icon: "🍸", ratio: "aspect-[4/5]" },
-  { label: "Espresso", icon: "☕", ratio: "aspect-square" },
-  { label: "Kokteyller", icon: "🍹", ratio: "aspect-[4/3]" },
-  { label: "Tatlılar", icon: "🍰", ratio: "aspect-[4/5]" },
-  { label: "Gece", icon: "🌙", ratio: "aspect-square" },
-  { label: "Tabaklar", icon: "🍽️", ratio: "aspect-[4/3]" },
-  { label: "Bira & şarap", icon: "🍺", ratio: "aspect-[4/5]" },
-  { label: "Kalabalık", icon: "✨", ratio: "aspect-square" },
-  { label: "Köşe", icon: "🪑", ratio: "aspect-[4/3]" },
+  {
+    label: "Köşedeki tabela",
+    icon: "✨",
+    ratio: "aspect-[4/3]",
+    img: "/gallery/dis-cephe.jpg",
+    alt: "Jimmy's Corner dış cephesi — tabela, siyah tenteler ve teras",
+  },
+  {
+    label: "Bar & salon",
+    icon: "🍸",
+    ratio: "aspect-[4/3]",
+    img: "/gallery/salon-bar.jpg",
+    alt: "Arka planda bar tezgâhı, önde deri kanepe ve masalar",
+  },
+  {
+    label: "Self servis köşesi",
+    icon: "☕",
+    ratio: "aspect-[3/4]",
+    img: "/gallery/self-servis.jpg",
+    alt: "Self servis ve takeaway köşesi, berjer koltuk ve emaye kupalar",
+  },
+  {
+    label: "Kırmızı duvar",
+    icon: "🪑",
+    ratio: "aspect-[4/3]",
+    img: "/gallery/kirmizi-duvar.jpg",
+    alt: "Kırmızı ve yeşil duvarlı salon, ahşap masalar ve çerçeveli posterler",
+  },
+  {
+    label: "Emaye kupa",
+    icon: "☕",
+    ratio: "aspect-[4/3]",
+    img: "/menu/jimmys-kupa.jpg",
+    alt: "Jimmy's Coffee Corner emaye kupa",
+  },
+  {
+    label: "Bira dolapları",
+    icon: "🍺",
+    ratio: "aspect-[4/5]",
+    img: "/gallery/bira-dolabi.jpg",
+    alt: "Mavi ışıklı bira dolapları",
+  },
+  {
+    label: "Salon",
+    icon: "🪑",
+    ratio: "aspect-[4/3]",
+    img: "/gallery/salon.jpg",
+    alt: "Geniş salon, kırmızı kanepeler ve sarkıt lambalar",
+  },
+  {
+    label: "Soğuk raf",
+    icon: "🍺",
+    ratio: "aspect-[3/4]",
+    img: "/gallery/bira-sisleri.jpg",
+    alt: "Dolapta sıra sıra bira şişeleri",
+  },
+  {
+    label: "Uzun salon",
+    icon: "🌙",
+    ratio: "aspect-[4/3]",
+    img: "/gallery/uzun-salon.jpg",
+    alt: "Uzun salon boyunca masalar ve bar",
+  },
+  {
+    label: "Yanına al",
+    icon: "☕",
+    ratio: "aspect-[4/3]",
+    img: "/menu/jimmys-karton-bardak.jpg",
+    alt: "Jimmy's Corner karton kahve bardağı",
+  },
 ];
 
 export default function GaleriPage() {
@@ -99,12 +162,24 @@ export default function GaleriPage() {
             >
               <div className={`relative ${t.ratio}`}>
                 {t.img ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={t.img}
-                    alt={t.label}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  <>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={t.img}
+                      alt={t.alt ?? t.label}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    {/* Alt yazının okunması için koyu degrade */}
+                    <div
+                      className="pointer-events-none absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, transparent 55%, rgba(14,11,8,0.8) 100%)",
+                      }}
+                    />
+                  </>
                 ) : (
                   <div
                     className="absolute inset-0 flex items-center justify-center"
@@ -123,17 +198,17 @@ export default function GaleriPage() {
                     </span>
                   </div>
                 )}
-                <figcaption className="absolute bottom-3 left-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
+                <figcaption
+                  className={`absolute bottom-3 left-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] ${
+                    t.img ? "text-cream" : "text-muted"
+                  }`}
+                >
                   {t.label}
                 </figcaption>
               </div>
             </figure>
           ))}
         </div>
-
-        <p className="mt-12 text-center font-mono text-[0.68rem] uppercase tracking-[0.2em] text-muted">
-          Fotoğraflar yakında · Kareler <span className="text-brass">public/gallery</span> klasörüne eklenebilir
-        </p>
       </div>
     </section>
   );

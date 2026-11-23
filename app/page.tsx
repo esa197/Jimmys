@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 /* ----------------------------- İçerik (yer tutucu) ----------------------------- */
 
@@ -20,16 +21,16 @@ const categories: Category[] = [
     groups: [
       {
         items: [
-          { name: "Espresso & Doppio" },
-          { name: "Türk Kahvesi" },
-          { name: "Filtre Kahve" },
-          { name: "Americano" },
-          { name: "Latte / Flat White / Cappuccino" },
-          { name: "Chai Tea Latte / Sahlep" },
-          { name: "Caramel Macchiato" },
-          { name: "Mocha / White Chocolate Mocha" },
-          { name: "Caramel Dream" },
-          { name: "Berry White Mocha" },
+          { name: "Espresso & Doppio", img: "/menu/jimmys-kupa.jpg" },
+          { name: "Türk Kahvesi", img: "/menu/jimmys-karton-bardak.jpg" },
+          { name: "Filtre Kahve", img: "/menu/jimmys-kupa.jpg" },
+          { name: "Americano", img: "/menu/jimmys-karton-bardak.jpg" },
+          { name: "Latte / Flat White / Cappuccino", img: "/menu/jimmys-kupa.jpg" },
+          { name: "Chai Tea Latte / Sahlep", img: "/menu/jimmys-karton-bardak.jpg" },
+          { name: "Caramel Macchiato", img: "/menu/jimmys-kupa.jpg" },
+          { name: "Mocha / White Chocolate Mocha", img: "/menu/jimmys-karton-bardak.jpg" },
+          { name: "Caramel Dream", img: "/menu/jimmys-kupa.jpg" },
+          { name: "Berry White Mocha", img: "/menu/jimmys-karton-bardak.jpg" },
         ],
       },
     ],
@@ -287,6 +288,14 @@ const hours = [
   { day: "Pazar", time: "16:00 – 24:00" },
 ];
 
+/* Ana sayfadaki "Köşeden kareler" şeridi (public/gallery) */
+const venueShots = [
+  { img: "/gallery/dis-cephe.jpg", label: "Köşedeki tabela", pos: "32% 50%", alt: "Jimmy's Corner dış cephesi ve tabelası" },
+  { img: "/gallery/salon-bar.jpg", label: "Bar & salon", pos: "50% 50%", alt: "Bar tezgâhı ve deri kanepeli salon" },
+  { img: "/gallery/kirmizi-duvar.jpg", label: "Kırmızı duvar", pos: "28% 50%", alt: "Kırmızı duvarlı köşe, posterler ve ahşap masalar" },
+  { img: "/gallery/self-servis.jpg", label: "Self servis", pos: "50% 50%", alt: "Self servis köşesi ve emaye kupalar" },
+];
+
 const ticker = [
   "Bu akşam · Canlı caz 21:00",
   "Mutfak gece yarısına kadar açık",
@@ -415,7 +424,7 @@ export default function Home() {
 
       {/* ---------------- Hakkında / Ev ---------------- */}
       <section id="mekan" className="relative border-t border-line bg-charcoal">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28 grid md:grid-cols-2 gap-14 items-center">
+        <div className="mx-auto max-w-6xl px-6 pt-20 md:pt-28 pb-14 md:pb-16 grid md:grid-cols-2 gap-14 items-center">
           <div data-reveal>
             <p className="eyebrow">Ev</p>
             <h2
@@ -461,6 +470,52 @@ export default function Home() {
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/5" />
+          </div>
+        </div>
+
+        {/* Mekândan kareler → galeri */}
+        <div className="mx-auto max-w-6xl px-6 pb-20 md:pb-28">
+          <div data-reveal className="flex items-end justify-between gap-6">
+            <p className="eyebrow">Köşeden kareler</p>
+            <Link
+              href="/galeri"
+              className="font-mono text-[0.68rem] uppercase tracking-[0.2em] text-brass hover:text-brass-bright transition-colors"
+            >
+              Galeriyi gör →
+            </Link>
+          </div>
+          <div
+            data-reveal
+            style={{ transitionDelay: "0.1s" }}
+            className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+          >
+            {venueShots.map((s) => (
+              <Link
+                key={s.img}
+                href="/galeri"
+                className="group relative aspect-[4/5] overflow-hidden rounded-sm border border-line bg-panel"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={s.img}
+                  alt={s.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: s.pos }}
+                />
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent 55%, rgba(14,11,8,0.85) 100%)",
+                  }}
+                />
+                <span className="absolute bottom-3 left-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-cream">
+                  {s.label}
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -545,6 +600,8 @@ export default function Home() {
                           <img
                             src={item.img}
                             alt={item.name}
+                            loading="lazy"
+                            decoding="async"
                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         ) : (
