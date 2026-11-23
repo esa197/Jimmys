@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import CoffeePourScene from "./components/CoffeePourScene";
 
 /* ----------------------------- İçerik (yer tutucu) ----------------------------- */
 
@@ -341,9 +340,6 @@ export default function Home() {
 
   return (
     <div className="relative z-10">
-      {/* ---------------- Açılış: kaydırmalı buz → kahve sahnesi ---------------- */}
-      <CoffeePourScene />
-
       {/* ---------------- Ticker ---------------- */}
       <div className="overflow-hidden border-b border-line bg-charcoal">
         <div className="marquee-track py-2.5">
