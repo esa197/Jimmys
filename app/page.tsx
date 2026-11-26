@@ -711,21 +711,58 @@ export default function Home() {
             Soru, öneri ya da sadece bir kahve sohbeti — kapımız da telefonumuz
             da açık. En hızlısı Instagram’dan yazmak.
           </p>
+          {/* Adres + telefon */}
+          <div className="mt-10 flex flex-col items-center gap-3 text-muted">
+            <p className="leading-relaxed not-italic">
+              Postane Mahallesi, Cumhuriyet Caddesi No:5
+              <br />
+              Tuzla / İstanbul 34940
+            </p>
+            <a
+              href="tel:+905428972425"
+              className="font-mono tracking-[0.15em] text-cream hover:text-brass-bright transition-colors"
+            >
+              0542 897 24 25
+            </a>
+          </div>
+
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a href="tel:+900000000000" className="btn btn-solid">
+            <a href="tel:+905428972425" className="btn btn-solid">
               Bizi Ara
             </a>
-            <a href="mailto:merhaba@jimmys.example" className="btn btn-ghost">
+            <a href="mailto:info@jimmyscoffeecorner.com" className="btn btn-ghost">
               E-posta Gönder
             </a>
             <a
-              href="https://instagram.com/"
+              href="https://www.instagram.com/jimmyscoffeecorner/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-ghost"
             >
               Instagram
             </a>
+          </div>
+
+          {/* Harita */}
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Postane%20Mahallesi%20Cumhuriyet%20Caddesi%20No%3A5%2C%20Tuzla%2C%20İstanbul%2034940"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-block font-mono text-[0.72rem] uppercase tracking-[0.2em] text-brass-bright hover:underline"
+          >
+            Yol tarifi al →
+          </a>
+
+          <div className="mt-8 overflow-hidden rounded-2xl border border-line">
+            <iframe
+              title="Jimmy's Coffee Corner — Konum"
+              src="https://maps.google.com/maps?q=Postane%20Mahallesi%20Cumhuriyet%20Caddesi%20No%3A5%2C%20Tuzla%2C%20İstanbul%2034940&z=16&hl=tr&output=embed"
+              className="block w-full h-[320px] md:h-[420px]"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>

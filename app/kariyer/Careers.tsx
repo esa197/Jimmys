@@ -30,7 +30,7 @@ const roles = [
   },
 ];
 
-const CAREERS_EMAIL = "kariyer@jimmys.example";
+const CAREERS_EMAIL = "info@jimmyscoffeecorner.com";
 
 export default function Careers() {
   const [position, setPosition] = useState("");
